@@ -14,7 +14,7 @@
 ---
 
 ## 📖 General Information
-This module is focus on learning about:
+This module is focused on learning about:
 - How Docker works.
 - The challenges of running applications without containerization.
 - The pros and cons of containerization.
@@ -24,9 +24,7 @@ This module is focus on learning about:
 
 ## 🎯 Task objective
 
-Main assesment is focus on contenarizating UI test framework with usage of `Dockerfile` and `docker-compose.yaml`.
-
-For more details check **Assesment.md**.
+The main objective is to containerize a UI test framework using a `Dockerfile` and `docker-compose.yaml`.
 
 ---
 
@@ -96,34 +94,31 @@ cd docker-module-18
 
 ---
 
-## 🧪 During tests
+## 🧪 Live test viewing
 
-There is possibility to check current test progress. To do this, you need:
-1. Open this page [selenium-grid](http://localhost:4444/ui/)
-2. Click camera icon.
-3. Provide password. For selenium grid it's usually ***secret***.
-4. Watch how test work.
-
----
-
-## 🗓 Future innovations <a id='future'/>
-In close future, I will add few changes such as:
-- Add configuration for different browsers and dimesions.
-- Add loggers.
-- Repair StoreLocationTest.java (not working with standalone chrome container).
-- Use parameters.
-- Add allure reports.
-- Change to BDD with usage of Cucumber.
-- Integrate with CI/CD pipelines.
+It's possible to watch the tests exeute in real-time. To do so:
+1. Open Selenium Grid UI in your browser: [selenium-grid](http://localhost:4444/ui/)
+2. You will see active sessions. Click the camera icon 🎥 next to a session.
+3. When prompted for a password, enter ***secret***.
+4. Watch your test run live inside the container!
 
 ---
 
-## 📓 Notes
-- Technology used:
-  - JDK 17-oracle
-  - Maven 3.13.0
-  - Surefire 3.5.2
-  - TestNG 7.11.0
-  - Selenium 4.25.0
-  - WebDriverManager from io.github.bonigarcia 5.4.1 (for local testing)
-  - Lombok
+## 🗓 Future Plans <a id='future'/>
+In the near future, I plan to implement the following improvements:
+- Implement comprehensive logging.
+- Repair [`StoreLocationTest.java`](https://github.com/SkarKam/docker-module-18/blob/main/src/test/java/StoreLocationTest.java) (currently fails when run with a standalone Chrome container).
+- UParameterize tests for better data management.
+- Generate Allure test reports.
+- Refactor the framework to use a BDD approach with Cucumber.
+- Integrate the test suite with a CI/CD pipeline.
+
+---
+
+## 📓 Tech Stack
+- Java: Oracle JDK 17
+- Build Tool: Maven 3.13.0
+- Test Runner: Surefire 3.5.2
+- Testing Framework: TestNG 7.11.0
+- Browser Automation: Selenium 4.25.0
+- WebDriver Management: WebDriverManager from io.github.bonigarcia 5.4.1 (for local testing)
