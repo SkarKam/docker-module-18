@@ -18,36 +18,25 @@ public class HomePage extends BasePage{
     }
 
     public HomePage acceptCookies() {
-        waiter.until(ExpectedConditions.elementToBeClickable(cookieAcceptButton));
-        WebElement cookieAccButton = driver.findElement(cookieAcceptButton);
+        WebElement cookieAccButton = waiter.until(ExpectedConditions.elementToBeClickable(cookieAcceptButton));
         cookieAccButton.click();
         return this;
     }
 
     public HomePage clickAccountIcon() {
-        WebElement accountIcon = driver.findElement(userLogInIcon);
+        WebElement accountIcon = waiter.until(ExpectedConditions.elementToBeClickable(userLogInIcon));
         accountIcon.click();
         return this;
     }
 
     public boolean isLogInForm() {
-        waiter.until(ExpectedConditions.visibilityOfElementLocated(logInForm));
-        WebElement logForm = driver.findElement(logInForm);
+        WebElement logForm = waiter.until(ExpectedConditions.elementToBeClickable(logInForm));
         return logForm.isDisplayed();
     }
 
     public SearchBar clickSearchBar() {
-        WebElement search = driver.findElement(searchBar);
+        WebElement search = waiter.until(ExpectedConditions.elementToBeClickable(searchBar));
         search.click();
         return new SearchBar(driver);
     }
-    // Old allegro stuff
-   /* public LogInPage clickUserLogInButton() {
-        WebElement loginButton = driver.findElement(userLogInButton);
-        if(!loginButton.isDisplayed()) {
-           ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);");
-        }
-        loginButton.click();
-        return new LogInPage(driver);
-    }*/
 }

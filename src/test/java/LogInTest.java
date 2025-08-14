@@ -1,3 +1,4 @@
+import io.github.cdimascio.dotenv.Dotenv;
 import org.griddynamics.exceptions.EmptyFieldException;
 import org.griddynamics.exceptions.InvalidCredentialsException;
 import org.griddynamics.pages.HomePage;
@@ -10,12 +11,15 @@ public class LogInTest extends BaseTest {
 
     @Test
     public void logInSuccessful() throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+       String email = Dotenv.load().get("EMAIL");
+       String pass = Dotenv.load().get("PASS");
+
         String popUpInfo = new HomePage(webDriver)
                 .acceptCookies()
                 .getActionNavBar()
                 .goToLogInForm(HomePage.class)
-                .enterLogin("temporaryuitesting@gmail.com")
-                .enterPassword("Alfa123!")
+                .enterLogin(email)
+                .enterPassword(pass)
                 .logIn()
                 .popUpAfterAccountLog();
 
@@ -60,12 +64,14 @@ public class LogInTest extends BaseTest {
 
     @Test
     public void logOut() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        String email = Dotenv.load().get("EMAIL"), password = Dotenv.load().get("PASS");
+
         String popUpInformation = new HomePage(webDriver)
                 .acceptCookies()
                 .getActionNavBar()
                 .goToLogInForm(HomePage.class)
-                .enterLogin("temporaryuitesting@gmail.com")
-                .enterPassword("Alfa123!")
+                .enterLogin(email)
+                .enterPassword(password)
                 .logIn()
                 .waitForPopUpClose()
                 .getActionNavBar()

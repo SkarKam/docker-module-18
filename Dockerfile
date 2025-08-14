@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy POM and download dependency
 COPY ./pom.xml .
+COPY ./.env .
 RUN mvn dependency:go-offline
 
 # Copy the rest of source code

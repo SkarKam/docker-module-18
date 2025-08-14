@@ -4,8 +4,6 @@ import org.griddynamics.models.Product;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.nio.file.WatchEvent;
-
 public class ProductPage extends BasePage{
 
     private final By productName = By.xpath("//h1");
@@ -45,15 +43,6 @@ public class ProductPage extends BasePage{
     }
 
     private WebElement getAddToCartButtonFromCartType(By by) {
-/*        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        waiter.until(ExpectedConditions.or(
-                    ExpectedConditions.visibilityOfElementLocated(cartDesktop),
-                    ExpectedConditions.visibilityOfElementLocated(cartMobile)
-            ));*/
         waiter.until(ExpectedConditions
                 .and(ExpectedConditions
                         .or(ExpectedConditions.visibilityOfElementLocated(cartMobile),

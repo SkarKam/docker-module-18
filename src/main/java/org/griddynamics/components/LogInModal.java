@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.lang.reflect.InvocationTargetException;
 import java.time.Duration;
-import java.util.List;
 
 public class LogInModal <T extends BasePage>{
 

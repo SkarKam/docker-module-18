@@ -11,9 +11,7 @@ public class SearchPage extends BasePage {
     private final By numberOfProducts = By.xpath("//div[@data-name='listingHeader']");
     private final By products = By.xpath("//div[@class='relative my-6']");
     private final By productsName = By.xpath(".//a/h2");
-    private final By productPrice = By.xpath(".//div[@data-price-type]");
     private final By productPageGoTo = By.xpath(".//a[@href]/button[normalize-space()='Zobacz więcej']");
-    private final By maxPageNumber = By.xpath("//li[@class='inline-flex items-center space-x-2']/p");
     private final By nextPage = By.xpath("//a[@aria-label='nawiguj do następnej strony']");
     private final By closeQuestionnaire = By.cssSelector("#yourcx_layer>.yourcx_close");
 
@@ -22,8 +20,7 @@ public class SearchPage extends BasePage {
     }
 
     public int findNumberOfProducts() {
-        waiter.until(ExpectedConditions.visibilityOfElementLocated(numberOfProducts));
-        WebElement productCount = driver.findElement(numberOfProducts);
+        WebElement productCount = waiter.until(ExpectedConditions.visibilityOfElementLocated(numberOfProducts));
         System.out.println(productCount.isDisplayed());
         if (!productCount.isDisplayed()) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", productCount);
@@ -89,8 +86,7 @@ public class SearchPage extends BasePage {
     }
 
     private void questionnaireHandler () {
-       waiter.until(ExpectedConditions.elementToBeClickable(closeQuestionnaire));
-       WebElement quest = driver.findElement(closeQuestionnaire);
+       WebElement quest = waiter.until(ExpectedConditions.elementToBeClickable(closeQuestionnaire));
        quest.click();
     }
 }

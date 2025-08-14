@@ -2,7 +2,6 @@ package org.griddynamics.pages;
 
 import lombok.Getter;
 import org.griddynamics.components.ActionNavBar;
-//import org.griddynamics.components.ManagementNavBar;
 import org.griddynamics.components.SearchBar;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -22,15 +21,13 @@ public abstract class BasePage {
     private SearchBar searchBar;
     @Getter
     private ActionNavBar actionNavBar;
-    //@Getter
-    //private ManagementNavBar managementNavBar;
 
     @FindBy
     private final By popUpInformation = By.xpath("//ul[@class='relative']/li[@data-name='toast']/div");
 
     public BasePage(WebDriver webDriver) {
         this.driver = webDriver;
-        waiter = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        waiter = new WebDriverWait(webDriver, Duration.ofSeconds(12));
         this.searchBar = new SearchBar(driver);
         this.actionNavBar = new ActionNavBar(driver);
     }

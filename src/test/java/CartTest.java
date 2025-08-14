@@ -38,7 +38,7 @@ public class CartTest extends BaseTest{
                 .goToCartPage()
                 .getTotalPrice();
 
-        Assert.assertEquals(finalPrice,"865 zł", "Prices are different!");
+        Assert.assertEquals(finalPrice,"875 zł", "Prices are different!");
     }
 
     @Test

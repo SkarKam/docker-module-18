@@ -14,8 +14,7 @@ public class AccountPage extends BasePage{
     }
 
     public HomePage logOut() {
-        waiter.until(ExpectedConditions.elementToBeClickable(logOutLink));
-        WebElement logOutButton = driver.findElement(logOutLink);
+        WebElement logOutButton = waiter.until(ExpectedConditions.elementToBeClickable(logOutLink));
         logOutButton.click();
         return new HomePage(this.driver);
     }
