@@ -55,13 +55,13 @@ PASS=example
 
 The default configuration can be found in the following files:
 
-- (`env.properties`)[]
+- [`env.properties`](https://github.com/SkarKam/docker-module-18/blob/main/src/main/resources/env.properties)
 ```properties
 site.url = https://www.komputronik.pl/
 remote.url = http://selenium-hub:4444/
 ```
 
-- (`run.properties`)[]
+- [`run.properties`](https://github.com/SkarKam/docker-module-18/blob/main/src/main/resources/run.properties)
 ```properties
 browser.name = chrome
 browser.width = 1280
@@ -78,9 +78,9 @@ Currently, you can customize the following settings in `run.properties`:
 To run, follow this steps:
 1. Open **Terminal/Command Prompt** and clone docker-module-18 repository:
 ```bash
-  git clone [https://github.com/SkarKam/docker-module-18.git](https://github.com/SkarKam/docker-module-18.git)
+  git clone https://github.com/SkarKam/docker-module-18.git
 ```
-2. Navigate into the cloned directory:
+3. Navigate into the cloned directory:
 ```bash
 cd docker-module-18
 ```
