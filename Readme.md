@@ -2,15 +2,16 @@
 ---
 
 ## Contents:
-1. [General Information](#-general-information)
-2. [Task Objective](#-task-objective)
-3. [Requirements](#-requirements)
-4. [Pre-configuration](#pre-config)
-5. [Configuration](#config)
-6. [Run](#-how-to-run)
-7. [Test](#-during-tests)
-8. [Future innovations](#future)
-9. [Notes](#-notes)
+### 1. [General Information](#-general-information)
+### 2. [Task Objective](#-task-objective)
+### 3. [Requirements](#-requirements)
+### 4. [Pre-configuration](#pre-config)
+### 5. [Configuration](#config)
+### 6. [How to run](#-how-to-run)
+### 7. [Live test viewing](#-live-test-viewing)
+### 8. [Future Plans](#future)
+### 9. [Tech Stack](#-tech-stack)
+    
 ---
 
 ## 📖 General Information
@@ -22,9 +23,16 @@ This module is focused on learning about:
 
 ---
 
-## 🎯 Task objective
+## 🎯 Task Objective
 
 The main objective is to containerize a UI test framework using a `Dockerfile` and `docker-compose.yaml`.
+
+To obtain this goal, we need follow this steps:
+1. ***Define a Base Image:*** A `Dockerfile` was created to define a base image containing all necessary components, such as the Java Runtime Environment and browser drivers.
+2. ***Build the Docker Image:*** A custom Docker image for the test framework was built using the `docker build` command.
+3. ***Define Services with Docker Compose:*** A `docker-compose.yaml` file was set up to define and orchestrate all required services (e.g., Selenium Hub, browser nodes) and expose their necessary ports.
+4. ***Enable Remote Execution:*** The test framework was configured to run tests inside a Docker container by connecting to the remote Selenium Grid.
+5. ***Run and Verify:*** The entire test suite was executed using docker-compose to ensure all services work together correctly and that the tests pass successfully within the containerized environment.
 
 ---
 
@@ -49,7 +57,7 @@ PASS=example
 
 ---
 ## ⚙️ Configuration <a id='config'/>
-### General Information
+### ⚙️ Default configuration
 
 The default configuration can be found in the following files:
 
@@ -66,13 +74,18 @@ browser.width = 1280
 browser.height = 720
 is.remote = true
 ```
-### ⚙️ Own configuration
+---
+### ⚙️ Custom Configuration
 Currently, you can customize the following settings in `run.properties`:
 - Browser Type: Change `browser.name` to `chrome` or `firefox`. Note: This value is ***case-sensitive***.
 - Window Size: Adjust `browser.width` and `browser.height` as needed.
 - Execution Mode: Set `is.remote=true` to run tests against the remote Selenium Grid (via Docker) or `false` to run them on your local machine.
 
+---
+
 ## ⏩ How to run
+
+### Defualt run (optimal one)
 To run, follow this steps:
 1. Open **Terminal/Command Prompt** and clone docker-module-18 repository:
 ```bash
@@ -91,6 +104,10 @@ cd docker-module-18
 ```bash
   docker-compose --build up
 ``` 
+
+### Alternative one
+There is alternative rote for run this soulution. However it's take more time and it's less optimal.
+
 
 ---
 
