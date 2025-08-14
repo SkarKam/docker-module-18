@@ -4,6 +4,8 @@ services:
     image: docker-module
     depends_on:
       - chrome
+      - firefox
+    container_name: test-framework-runner
 
   chrome:
     image: selenium/node-chrome:4.34.0-20250727
