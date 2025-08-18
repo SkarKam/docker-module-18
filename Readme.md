@@ -9,6 +9,7 @@
 ### 5. [Configuration](#config)
 ### 6. [How to run](#-how-to-run)
 ### 7. [Live test viewing](#-live-test-viewing)
+### 8. [Post Run Cleaning](#-post-run-cleaning)
 ### 8. [Future Plans](#future)
 ### 9. [Tech Stack](#-tech-stack)
     
@@ -85,17 +86,17 @@ Currently, you can customize the following settings in `run.properties`:
 
 ## ⏩ How to run
 
-### Defualt run (optimal one)
+### Default run
 To run, follow this steps:
 1. Open **Terminal/Command Prompt** and clone docker-module-18 repository:
 ```bash
   git clone https://github.com/SkarKam/docker-module-18.git
 ```
-3. Navigate into the cloned directory:
+2. Navigate into the cloned directory:
 ```bash
 cd docker-module-18
 ```
-3. Configurate `.env` file as described in the [Pre-configuration](#pre-configuration) section.
+3. Configurate `.env` file as described in the [Pre-configuration](#pre-config) section.
 4. Ensure Docker is running. On Windows/macOS, launch the Docker Desktop app. On Linux, you can start the Docker daemon with:
 ```bash
    sudo systemctl start docker
@@ -105,9 +106,44 @@ cd docker-module-18
   docker-compose --build up
 ``` 
 
-### Alternative one
-There is alternative rote for run this soulution. However it's take more time and it's less optimal.
+### Alternative Run (with Docker Commands)
+This is an alternative route to run the solution without using  `docker-compose.yaml`.
 
+1. Complete steps 1 through 4 from the ***[Default Run](#default-run)*** instructions.
+2. In your **terminal**, build the *test framework* image:
+```bash
+docker build -t test-framework-image .
+```
+3. Create a dedicated network for the containers to communicate:
+```bash
+docker network create selenium-grid-net
+```
+4. Run the Selenium Hub container:
+```bash
+docker run -d \
+--name selenium-hub \
+--network selenium-grid-net \
+-p 4442:4442 -p 4443:4443 -p 4444:4444 \
+selenium/hub:4.34.0-20250727   
+``` 
+5. Run the Chrome browser node container:
+```bash
+ docker run -d \
+--name chrome \
+--network selenium-grid-net \
+--shm-size="4g" \
+-e SE_EVENT_BUS_HOST=selenium-hub \
+-e SE_EVENT_BUS_PUBLISH_PORT=4442 \
+-e SE_EVENT_BUS_SUBSCRIBE_PORT=4443 \
+selenium/node-chrome:4.34.0-20250727
+```
+6. Run the test framework container to execute your tests:
+```bash
+docker run -d \
+--name test-framework-container \
+--network selenium-grid-net \
+test-framework-image
+```
 
 ---
 
@@ -118,6 +154,24 @@ It's possible to watch the tests exeute in real-time. To do so:
 2. You will see active sessions. Click the camera icon 🎥 next to a session.
 3. When prompted for a password, enter ***secret***.
 4. Watch your test run live inside the container!
+
+---
+
+## 🪣 Post Run Cleaning
+After your tests are complete, use these commands to clean up your Docker environment.
+
+1. Stop and remove all containers created for the test run (hub and nodes):
+```bash
+docker rm -f selenium-hub chrome test-framework-container
+```
+2. Remove the test framework image:
+```
+docker rmi test-framework-image
+```
+3. Remove the network:
+```bash
+docker network rm selenium-grid-net
+```
 
 ---
 
